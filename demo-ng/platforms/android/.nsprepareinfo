@@ -1,0 +1,25 @@
+{
+	"time": "Mon Sep 10 2018 19:21:02 GMT+0200 (CEST)",
+	"nativePlatformStatus": "3",
+	"bundle": false,
+	"release": false,
+	"changesRequireBuild": true,
+	"projectFileHash": "0dacc5ee88a94cee173cea5cf4cc1c1910135ae9e505713ca69134d1d8284629",
+	"changesRequireBuildTime": "Mon Sep 10 2018 19:21:02 GMT+0200 (CEST)",
+	"appFilesHashes": {
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.component.js": "e41133cf77b4dd10243dda445d71d137f5a78cf8",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.component.ts": "b6f946f5c281914b46b81d389a59a4eeae3d8e01",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.module.js": "cf0986aff2725e6c70e6e319c033a18946e76714",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.module.ngfactory.d.ts": "efd772f80676035988b3a2fc2b249d24a9b13f5c",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.module.ts": "44734dae49ca07814f9023c5e035e51d3e3d5c4e",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.routing.js": "881f70433f64a192b776dac96b8dfc7287473549",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.routing.ts": "61078d19964fb502c0b0ba963c15837a140bbe48",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.component.html": "6a1bd09d0a21a75162ef25a9971dfca51847e900",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/main.aot.js": "82972974db53efeab4b1f1b29aaf4fe68351bd6d",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/app.css": "24f81ff5c41798f4671899fdc9d85993fbf27059",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/main.aot.ts": "ef9598ed4f3baa376c80a9ddb552f6814344d26a",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/main.js": "8cf31d0af2ff0f488b3ac56bfb9cd9a7a4cd3f1b",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/main.ts": "fb099974e7c219d0136362ea16211b76f6fe28e0",
+		"/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/app/package.json": "62db8f086c6c89608370f1d52d8bcf671ce139db"
+	}
+}
