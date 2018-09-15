@@ -8,11 +8,15 @@ import { FilePlugin } from 'nativescript-file-plugin';
 
 export class AppComponent { 
     
-
+    url : string;
     
     click(){
         console.log("ON CLICK");
         let filePlugin = new FilePlugin();
-        filePlugin.performFileSearch();
+        filePlugin.getFileURI().subscribe((uri)=>{
+            console.log("SUBSCRIBE "+uri);
+            if(uri != "")
+                this.url = uri;
+        });
     }
 }

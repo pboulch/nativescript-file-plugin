@@ -18,6 +18,8 @@ demo/*.d.ts
 !demo/references.d.ts
 demo/lib
 demo/platforms
+demo-ng/lib
+demo-ng/platforms
 node_modules
 publish/src
 publish/package

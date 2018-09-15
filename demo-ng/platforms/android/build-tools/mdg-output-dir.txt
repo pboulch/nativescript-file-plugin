@@ -1,1 +1,0 @@
-/Users/pierreboulch/Documents/DEV/nativescript-file-plugin/demo-ng/platforms/android/app/src/main/assets/metadata
