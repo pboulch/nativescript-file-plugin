@@ -1,5 +1,6 @@
 import { Common } from './file-plugin.common';
 import {BehaviorSubject} from 'rxjs';
+import { getNativeApplication } from 'tns-core-modules/application/application';
 var application = require("application");
 
 
@@ -9,6 +10,11 @@ export class FilePlugin extends Common {
 
     static ACTION_OPEN_DOCUMENT : string = "android.intent.action.OPEN_DOCUMENT";
     static READ_REQUEST_CODE : number = 42;
+    static REQUEST_EXTERNAL_STORAGE : number = 1;
+    static PERMISSIONS_STORAGE : Array<string> = new Array(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+    );
 
     uri : string ; 
 
@@ -61,10 +67,37 @@ export class FilePlugin extends Common {
                 uri = resultData.getData();
                 console.log(uri);
                 this.uri = uri.toString();
-                if(resultObservable == null)
-                    resultObservable = new BehaviorSubject(uri.toString());
-                else
-                    resultObservable.next(uri.toString());
+                context.getContentResolver().openInputStream(uri);
+                try {
+                    let input : java.io.InputStream = context.getContentResolver().openInputStream(uri);
+                    let path : java.io.File = context.getFilesDir();
+                    let targetFile : java.io.File = new java.io.File(path, "/targetFile.tmp");
+                    
+
+                    let permission : number = android.support.v4.app.ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    if (permission != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                        // We don't have permission so prompt the user
+                        android.support.v4.app.ActivityCompat.requestPermissions(
+                                context,
+                                FilePlugin.PERMISSIONS_STORAGE,
+                                FilePlugin.REQUEST_EXTERNAL_STORAGE
+                        );
+                    }
+                   
+                    var buffer = java.lang.reflect.Array.newInstance(java.lang.Byte.class.getField("TYPE").get(null), input.available());
+                    input.read(buffer);
+
+                    let outStream : java.io.OutputStream = new java.io.FileOutputStream(targetFile);
+                    outStream.write(buffer);
+
+                    if(resultObservable == null)
+                        resultObservable = new BehaviorSubject(targetFile.getPath());
+                    else
+                        resultObservable.next(targetFile.getPath());
+                } catch (e) {
+                   console.dir(e);
+                }
+                
             }
         }
     }
