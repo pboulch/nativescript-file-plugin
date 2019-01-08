@@ -1,15 +1,15 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, AsyncSubject } from 'rxjs';
 import * as utils from 'tns-core-modules/utils/utils';
 
 export class DocumentPickerService {
     private documentPicker: UIDocumentPickerViewController;
 
-    static fileURLObservable : BehaviorSubject<string> = new BehaviorSubject<string>("");
+    static fileURLObservable: AsyncSubject<string> = new AsyncSubject<string>();
 
     fileUrl: string;
 
     show(vc: UIViewController) {
-        DocumentPickerService.fileURLObservable = new BehaviorSubject("");
+        DocumentPickerService.fileURLObservable = new AsyncSubject();
         const documentTypes = utils.ios.collections.jsArrayToNSArray([kUTTypeImage, kUTTypePDF]);
         this.documentPicker = UIDocumentPickerViewController.alloc().initWithDocumentTypesInMode(documentTypes, UIDocumentPickerMode.Import);
         this.documentPicker.delegate = DocumentPickerDelegate.initWithOwner(new WeakRef(this));
@@ -21,14 +21,15 @@ export class DocumentPickerService {
         console.log("File picked : " + fileUrl.path);
         this.fileUrl = fileUrl.path;
         DocumentPickerService.fileURLObservable.next(fileUrl.path);
+        DocumentPickerService.fileURLObservable.complete();
     }
 
-    static getFileURL() : BehaviorSubject<string>{
+    static getFileURL(): AsyncSubject<string> {
         return DocumentPickerService.fileURLObservable;
     }
 
-    static resetObservable() : void {
-        DocumentPickerService.fileURLObservable = new BehaviorSubject("");
+    static resetObservable(): void {
+        DocumentPickerService.fileURLObservable = new AsyncSubject();
     }
 }
 
