@@ -14,6 +14,9 @@ export class DocumentPickerService {
         this.documentPicker = UIDocumentPickerViewController.alloc().initWithDocumentTypesInMode(documentTypes, UIDocumentPickerMode.Import);
         this.documentPicker.delegate = DocumentPickerDelegate.initWithOwner(new WeakRef(this));
 
+        console.log("value of delegate : ");
+        console.dir(this.documentPicker.delegate);
+        
         vc.presentViewControllerAnimatedCompletion(this.documentPicker, true, null);
     }
 
