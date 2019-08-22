@@ -1,39 +1,42 @@
-# Your Plugin Name
+# Picker file for NativeScript
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+Picker file (not only medias files) for NativeScript
 
-Then describe what's the purpose of your plugin. 
-
-In case you develop UI plugin, this is where you can add some screenshots.
-
-## (Optional) Prerequisites / Requirements
-
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+Plugin downloads the file locally if it's a file on iCloud or Google Drive.
 
 ## Installation
 
-Describe your plugin installation steps. Ideally it would be something like:
-
 ```javascript
-tns plugin add <your-plugin-name>
+tns plugin add nativescript-file-plugin
 ```
 
 ## Usage 
-
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
 	
 	```javascript
-    Usage code snippets here
+    let permissionsRequired = new Array();
+        if (isAndroid) {
+            permissionsRequired = new Array(
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            );
+        }
+
+        permissions.requestPermissions(permissionsRequired)
+            .then(function () {
+                let filePlugin = new FilePlugin();
+                filePlugin.getFileURI().subscribe((uri) => {
+                    
+                    if (uri != ""){
+                        console.log("URI FILE : "+uri);
+                    }
+                        
+                })
+            }.bind(this))
+            .catch(function () {
+                console.log("ERROR - File picker error");
+            }.bind(this));
     ```)
 
-## API
-
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
-    
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
     
 ## License
 
