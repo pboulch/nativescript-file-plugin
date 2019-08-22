@@ -7,7 +7,7 @@ Plugin downloads the file locally if it's a file on iCloud or Google Drive.
 ## Installation
 
 ```javascript
-tns plugin add nativescript-file-plugin
+tns plugin add https://github.com/pboulch/nativescript-file-plugin/raw/master/publish/package/nativescript-file-plugin-1.1.0.tgz
 ```
 
 ## Usage 
