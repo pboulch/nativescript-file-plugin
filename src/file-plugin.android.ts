@@ -99,7 +99,7 @@ export class FilePlugin extends Common {
                     let path: java.io.File = context.getFilesDir();
                     let targetFile: java.io.File = new java.io.File(path, filename);
 
-                    let permission: number = android.support.v4.app.ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    let permission: number = androidx.core.app.ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     if (permission != android.content.pm.PackageManager.PERMISSION_GRANTED) {
                         // We don't have permission so prompt the user
                         console.log("insufficient permissions");
