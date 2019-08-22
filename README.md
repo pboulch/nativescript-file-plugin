@@ -6,13 +6,13 @@ Plugin downloads the file locally if it's a file on iCloud or Google Drive.
 
 ## Installation
 
-```javascript
+```
 tns plugin add https://github.com/pboulch/nativescript-file-plugin/raw/master/publish/package/nativescript-file-plugin-1.1.0.tgz
 ```
 
 ## Usage 
 	
-	```javascript
+	
     let permissionsRequired = new Array();
         if (isAndroid) {
             permissionsRequired = new Array(
@@ -35,7 +35,7 @@ tns plugin add https://github.com/pboulch/nativescript-file-plugin/raw/master/pu
             .catch(function () {
                 console.log("ERROR - File picker error");
             }.bind(this));
-    ```)
+    
 
     
 ## License
