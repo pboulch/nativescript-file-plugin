@@ -12,29 +12,15 @@ tns plugin add https://github.com/pboulch/nativescript-file-plugin/raw/master/pu
 
 ## Usage 
 	
-	
-    let permissionsRequired = new Array();
-        if (isAndroid) {
-            permissionsRequired = new Array(
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            );
-        }
+On Android, this plugin requires the following permissions : READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE.
+On iOS, you have to pass the current viewController as a parameter. It can be passed on android, it's just useless. It allows to open the picker from another window (for example a modal).
 
-        permissions.requestPermissions(permissionsRequired)
-            .then(function () {
-                let filePlugin = new FilePlugin();
-                filePlugin.getFileURI().subscribe((uri) => {
-                    
-                    if (uri != ""){
-                        console.log("URI FILE : "+uri);
-                    }
-                        
-                })
-            }.bind(this))
-            .catch(function () {
-                console.log("ERROR - File picker error");
-            }.bind(this));
+    let filePlugin = new FilePlugin();
+    filePlugin.getFileURI(page.viewController).subscribe((uri) => {
+        if (uri != ""){
+            console.log("File selected's uri : " + uri);
+        }
+    });
     
 
     
