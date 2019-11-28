@@ -1,40 +1,31 @@
-import { Common } from './file-plugin.common';
-import { BehaviorSubject, AsyncSubject } from 'rxjs';
-import { Subscription } from "rxjs";
-import { ios as iosApp } from "tns-core-modules/application";
+import { AsyncSubject, Subscription } from 'rxjs';
 import { DocumentPickerService } from './document-picker.service';
+import { Common } from './file-plugin.common';
 
 let resultObservable: AsyncSubject<string> = new AsyncSubject();
 
 export class FilePlugin extends Common {
+    private subscription: Subscription;
+    private dp: DocumentPickerService = new DocumentPickerService();
 
-    subscription: Subscription;
-    dp: DocumentPickerService = new DocumentPickerService();
-
-    constructor() {
-        super();
-    }
-
-    public getFileURI(): AsyncSubject<string> {
-        resultObservable = new AsyncSubject();
-        let window = iosApp.nativeApp.keyWindow || (iosApp.nativeApp.windows.count > 0 && iosApp.nativeApp.windows[0]);
-        if (window) {
-            let rootController = window.rootViewController;
-            if (rootController) {
-                console.log('Showing native IOS document picker');
-                this.dp.show(rootController);
-            }
-
-            console.log("subscribing to file URL");
-            this.subscription = DocumentPickerService.getFileURL().subscribe((result) => {
-                console.log("Data from DPS : " + result);
-                if (result !== "") {
-                    resultObservable.next(result);
-                    resultObservable.complete();
-                    this.subscription.unsubscribe();
-                }
-            });
+    public getFileURI(viewController: any): AsyncSubject<string> {
+        if (viewController == null) {
+            console.error("viewController must not be null");
         }
+
+        resultObservable = new AsyncSubject();
+
+        console.log('Showing native IOS document picker');
+        this.dp.show(viewController);
+
+        this.subscription = DocumentPickerService.getFileURL().subscribe((result) => {
+            if (result !== "") {
+                resultObservable.next(result);
+                resultObservable.complete();
+                this.subscription.unsubscribe();
+            }
+        });
+
         return resultObservable;
     }
 }
